@@ -11,13 +11,13 @@ using System.Web.UI.WebControls;
 
 namespace Tugas_PBO
 {
-    public partial class Suster : System.Web.UI.Page
+    public partial class Dokter : System.Web.UI.Page
     {
         protected void btnInsertion_Click(object sender, EventArgs e)
         {
-            if (SqlDBHelper.ExecuteNonQuery("Insert into suster values(@id_suster,@nama,@nomor_hp,@alamat)", CommandType.Text, new NpgsqlParameter("@id_suster", Convert.ToInt32(txtSusterID.Text)), new NpgsqlParameter("@nama", txtNama.Text), new NpgsqlParameter("@nomor_hp", txtNomor_hp.Text), new NpgsqlParameter("@alamat", txtAlamat.Text)))
+            if (SqlDBHelper.ExecuteNonQuery("Insert into dokter values(@id_dokter,@nama,@nomor_hp,@alamat)", CommandType.Text, new NpgsqlParameter("@id_dokter", Convert.ToInt32(txtDokterID.Text)), new NpgsqlParameter("@nama", txtNama.Text), new NpgsqlParameter("@nomor_hp", txtNomor_hp.Text), new NpgsqlParameter("@alamat", txtAlamat.Text)))
             {
-                txtSusterID.Text = ""; txtNama.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
+                txtDokterID.Text = ""; txtNama.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
                 GridView1.Visible = false;
                 lblmessage2.Text = String.Empty;
                 lblmessage.Text = String.Empty;
@@ -27,7 +27,7 @@ namespace Tugas_PBO
 
             else
             {
-                txtSusterID.Text = ""; txtNama.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
+                txtDokterID.Text = ""; txtNama.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
                 GridView1.Visible = false;
                 lblmessage2.Text = String.Empty;
                 lblmessage.Text = String.Empty;
@@ -39,7 +39,7 @@ namespace Tugas_PBO
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             DataTable dt;
-            if (SqlDBHelper.ExecuteDataSet(out dt, "Select * from suster order by id_suster", CommandType.Text))
+            if (SqlDBHelper.ExecuteDataSet(out dt, "Select * from dokter order by id_dokter", CommandType.Text))
             {
                 //if (SqlDBHelper.ExecuteDataSet(out dt, "Select * from account order by id", CommandType.Text))
                 lblmsg.Text = String.Empty;
@@ -53,16 +53,16 @@ namespace Tugas_PBO
         }
         protected void btnUpdation_Click(object sender, EventArgs e)
         {
-            if (SqlDBHelper.ExecuteNonQuery("update suster set id_suster=@id_suster, nama=@nama, nomor_hp=@nomor_hp, alamat=@alamat where id_suster=@id_suster", CommandType.Text, new NpgsqlParameter("@id_suster", Convert.ToInt32(txtSusterID.Text)), new NpgsqlParameter("@nama", txtNama.Text), new NpgsqlParameter("@nomor_hp", txtNomor_hp.Text), new NpgsqlParameter("@alamat", txtAlamat.Text)))
+            if (SqlDBHelper.ExecuteNonQuery("update dokter set id_dokter=@id_dokter, nama=@nama, nomor_hp=@nomor_hp, alamat=@alamat where id_dokter=@id_dokter", CommandType.Text, new NpgsqlParameter("@id_dokter", Convert.ToInt32(txtDokterID.Text)), new NpgsqlParameter("@nama", txtNama.Text), new NpgsqlParameter("@nomor_hp", txtNomor_hp.Text), new NpgsqlParameter("@alamat", txtAlamat.Text)))
             {
-                txtNama.Text = ""; txtSusterID.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
+                txtNama.Text = ""; txtDokterID.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
                 GridView1.Visible = false;
                 lblmsg2.Text = String.Empty;
                 lblmsg.Text = "Data Has been Updated";
             }
             else
             {
-                txtSusterID.Text = ""; txtNama.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
+                txtDokterID.Text = ""; txtNama.Text = ""; txtNomor_hp.Text = ""; txtAlamat.Text = "";
                 GridView1.Visible = false;
                 lblmsg.Text = String.Empty;
                 lblmsg2.Text = "Failed, ID and Username Should Be Unique";
@@ -74,19 +74,19 @@ namespace Tugas_PBO
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string var;
-            var = txtSustID.Text;
+            var = txtDokterID.Text;
             if (var == "")
             {
-                txtSustID.Text = "";
+                txtDokterID.Text = "";
                 GridView1.Visible = false;
                 lblmsg.Text = String.Empty;
                 lblmsg2.Text = String.Empty;
                 lblmessage.Text = String.Empty;
                 lblmessage2.Text = "Please Write the Correct ID";
             }
-            else if (SqlDBHelper.ExecuteNonQuery("Delete from suster where id_suster=@id_suster", CommandType.Text, new NpgsqlParameter("@id_suster", Convert.ToInt32(txtSustID.Text))))
+            else if (SqlDBHelper.ExecuteNonQuery("Delete from dokter where id_dokter=@id_dokter", CommandType.Text, new NpgsqlParameter("@id_suster", Convert.ToInt32(txtSustID.Text))))
             {
-                txtSustID.Text = "";
+                txtDokterID.Text = "";
                 GridView1.Visible = false;
                 lblmsg.Text = String.Empty;
                 lblmsg2.Text = String.Empty;
